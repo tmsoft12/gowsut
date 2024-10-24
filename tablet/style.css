@@ -1,0 +1,155 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #e8f5e9;
+    /* Açyk ýaşyl fon */
+    color: #388e3c;
+    /* Matn reňki */
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+    /* Merkezi ýerleşiş */
+}
+
+.container-main {
+    margin: 20px 0;
+    /* Ekranyň girelgesinden boşluk */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Kartyň ýumşaklygy */
+    justify-content: center;
+    /* Merkezi ýerleşiş */
+    align-items: center;
+    /* Merkezi ýerleşiş */
+    height: calc(100vh - 40px);
+    /* Ekranyň beýikligi */
+    margin-top: 20px;
+    gap: 20px;
+    /* Elementleriň arasyndaky boşluk */
+}
+
+.box {
+    background-color: #c8e6c9;
+    /* Card reňki */
+    border: 2px solid #388e3c;
+    /* Card çägi */
+    border-radius: 15px;
+    padding: 20px;
+    width: 150px;
+    /* Card giňligi */
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Geçiş efekti */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Ekranyň goýmasy */
+    position: relative;
+    /* Posaýoň we öňüne ýüklemek üçin */
+    overflow: hidden;
+    /* Içindäki elementleri çygaklamak */
+    text-align: center;
+    /* Merkezi ýerleşiş */
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    /* Cardyň üstüne basanda ýokarlaşar */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    /* Basanda gök görnüş */
+}
+
+.emoji {
+    font-size: 60px;
+    /* Emojiniň ululygy */
+    margin-bottom: 10px;
+    /* Emojiniň we matn arasyndaky boşluk */
+}
+
+.button {
+    display: inline-block;
+    /* Düzgünli görnüş */
+    padding: 10px 15px;
+    /* Dükany ýerleşdirmek üçin boşluk */
+    background-color: #388e3c;
+    /* Düwme reňki */
+    color: #fff;
+    /* Matn reňki */
+    border: none;
+    /* Çägi ýok */
+    border-radius: 5px;
+    /* Dwyjdy ýumşak künjigi */
+    text-decoration: none;
+    /* Ýazgynyň aşakdaky çägi ýok */
+    font-weight: bold;
+    /* Matn çydamlylygy */
+    cursor: pointer;
+    /* Kursor düwme görnüşi */
+    transition: background-color 0.3s, transform 0.3s;
+    /* Geçiş efekti */
+    margin-top: 10px;
+    /* Dwyjdaryň we düwmäniň arasyndaky boşluk */
+}
+
+.button:hover {
+    background-color: #2e7d32;
+    /* Basanda reňk üýtgeýär */
+    transform: scale(1.05);
+    /* Basanda meýdany has beýik eder */
+}
+
+.modal {
+    display: none;
+    /* Modal başlangyçda gizlenmeli */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Modal arka fon reňki */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    height: 30%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    /* Modal künjeklerini ýumşatmak */
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    /* Spinner reňki */
+    border-top: 8px solid #388e3c;
+    /* Spinner reňki */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    /* Spin efekti */
+    margin: 0 auto 10px;
+    /* Boşluk */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.sizedBox {
+    height: 20px;
+    /* Modal içindäki boşluk */
+}

@@ -2,20 +2,20 @@ function handleClick(type) {
     showModal();
 
     // URL'yi query parametresi ile belirleyin
-    let url = `http://localhost:3000?type=${encodeURIComponent(type)}`;
+    let url = `http://192.168.100.224:8000?type=${encodeURIComponent(type)}`;
 
     // GET isteği gönder
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data); 
-            setTimeout(function() {
+            console.log(data);
+            setTimeout(function () {
                 closeModal();
-            }, 3000);
+            }, 5000);
         })
         .catch(error => {
             console.error('Error:', error);
-            setTimeout(function() {
+            setTimeout(function () {
                 closeModal();
             }, 3000);
         });

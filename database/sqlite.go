@@ -2,22 +2,30 @@ package database
 
 import (
 	"database/sql"
+	"log"
 
-	_ "github.com/mattn/go-sqlite3" // SQLite driver import
+	_ "github.com/mattn/go-sqlite3" // SQLite sürüjisi import
 )
 
-// DB yapısı, veritabanı bağlantısını temsil eder
+// DB gurluşy, maglumatlar binýady bilen baglanyşygy görkezýär
 var DB *sql.DB
 
-// InitDatabase fonksiyonu veritabanı bağlantısını başlatır ve tabloyu oluşturur
+// InitDatabase funksiýasy maglumatlar binýadyny açýar we tablisany döredýär
 func InitDatabase() error {
 	var err error
+	// Maglumatlar binýadyny açmak
 	DB, err = sql.Open("sqlite3", "./test.db")
 	if err != nil {
 		return err
 	}
 
-	// Veritabanı tablosunu oluştur
+	// Maglumatlar binýady bilen baglanyşygy barlamak (Ping bilen synag etmek)
+	err = DB.Ping()
+	if err != nil {
+		return err
+	}
+
+	// Maglumatlar binýadynda tablisa döretmek
 	createTableSQL := `CREATE TABLE IF NOT EXISTS ticket (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		ticket INTEGER NOT NULL,
@@ -28,5 +36,7 @@ func InitDatabase() error {
 		return err
 	}
 
+	// Ussatlyk bilen maglumatlar binýadyny açandygyny yglan etmek
+	log.Println("Maglumatlar binýady üstünlikli açyldy we tablisa döredildi.")
 	return nil
 }

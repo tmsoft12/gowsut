@@ -3,6 +3,7 @@ package controller
 import (
 	"database/sql"
 	"log"
+	"strconv"
 	"tm/database"
 	"tm/models"
 
@@ -138,12 +139,35 @@ func HandleWebSocket(c *websocket.Conn) {
 		log.Println("Error sending WebSocket data:", err)
 	}
 }
-func DeleteTicket(c *fiber.Ctx) error {
-	id := c.Params("id")
 
-	_, err := database.DB.Exec("DELETE FROM ticket WHERE id=$1", id)
+// DeleteTicket işlemini yapar: Belirli bir ticket'ı siler
+func DeleteTicket(c *fiber.Ctx) error {
+	// URL'den ID parametresini al
+	ticketID := c.Params("id")
+
+	// ID'yi integer'a çevir
+	id, err := strconv.Atoi(ticketID)
+	if err != nil {
+		return c.Status(400).SendString("Geçersiz ticket ID")
+	}
+
+	// Veritabanında ticket'ı sil
+	res, err := database.DB.Exec("DELETE FROM ticket WHERE id = ?", id)
 	if err != nil {
 		return c.Status(500).SendString(err.Error())
 	}
-	return c.Status(200).JSON("Oki")
+
+	// Etkilenen satır sayısını kontrol et
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		return c.Status(500).SendString(err.Error())
+	}
+
+	// Eğer silinen satır yoksa, ticket bulunamamıştır
+	if rowsAffected == 0 {
+		return c.Status(404).SendString("Ticket bulunamadı")
+	}
+
+	// Başarılı mesajı döndür
+	return c.SendString("Ticket başarıyla silindi")
 }
